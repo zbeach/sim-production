@@ -100,4 +100,50 @@ static class Employees
 
         command.ExecuteNonQuery();
     }
+
+    /// <summary>
+    /// Removes the employee with the given id.
+    /// </summary>
+    /// <param name="id">The id of the employee to remove.</param>
+    public static void Remove(long id)
+    {
+        var command = Global.connection.CreateCommand();
+        command.CommandText =
+        @$"
+            DELETE FROM employees
+            WHERE id = {id};
+        ";
+
+        command.ExecuteNonQuery();
+    }
+
+    /// <summary>
+    /// Removes the employees with the given ids.
+    /// </summary>
+    /// <param name="ids">The ids of the employees to remove.</param>
+    public static void Remove(long[] ids)
+    {
+        var command = Global.connection.CreateCommand();
+        command.CommandText =
+        @$"
+            DELETE FROM employees
+            WHERE id IN ({string.Join(",", ids)});
+        ";
+
+        command.ExecuteNonQuery();
+    }
+
+    /// <summary>
+    /// Removes all employees.
+    /// </summary>
+    public static void Remove()
+    {
+        var command = Global.connection.CreateCommand();
+        command.CommandText =
+        @$"
+            DELETE FROM employees WHERE TRUE;
+        ";
+
+        command.ExecuteNonQuery();
+    }
 }
