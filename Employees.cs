@@ -1,5 +1,3 @@
-using Microsoft.Data.Sqlite;
-
 static class Employees
 {
     /// <summary>

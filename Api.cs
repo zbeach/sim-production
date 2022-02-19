@@ -1,5 +1,3 @@
-using Microsoft.Data.Sqlite;
-
 namespace Api
 {
   class Test
